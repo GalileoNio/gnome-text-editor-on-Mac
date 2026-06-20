@@ -1,0 +1,53 @@
+{
+  "updated": "2026-06-19",
+  "apps": [
+    {
+      "name": "Text Editor",
+      "slug": "text-editor",
+      "id": "org.gnome.TextEditor",
+      "subtitle": "Edit text files",
+      "summary": "GNOME 默认文本编辑器的 macOS 移植版，保留 GTK 4、libadwaita、GtkSourceView 与会话恢复等核心体验。",
+      "description": "Text Editor 是 GNOME 默认文本编辑器，目标是提供简洁、稳定、贴近桌面默认体验的文本编辑环境。这个条目记录的是它在 macOS 上完成编译、安装和 app bundle 包装后的运行状态。",
+      "status": "Running",
+      "groups": ["core", "circle"],
+      "upstreamCategory": "GNOME Core",
+      "version": "51.beta",
+      "macTarget": "macOS 14+",
+      "bundlePath": "dist/Text Editor.app",
+      "detailPath": "apps/text-editor/",
+      "icon": "assets/icons/org.gnome.TextEditor.svg",
+      "screenshot": "assets/screenshots/text-editor-search.png",
+      "screenshots": [
+        {
+          "src": "assets/screenshots/text-editor-search.png",
+          "alt": "Text Editor search and recent-files interface",
+          "caption": "搜索与最近文件界面"
+        }
+      ],
+      "toolkit": ["GTK 4", "libadwaita", "GtkSourceView", "libspelling"],
+      "portingNotes": [
+        "已通过 Meson 构建并安装到本地 _install 前缀。",
+        "已包装为 macOS .app bundle，启动脚本会设置 GSettings schema 与 XDG data paths。",
+        "当前用于展示和验证的是本地移植产物，不是 GNOME 官方 macOS 发布包。"
+      ],
+      "actions": [
+        {
+          "label": "查看上游应用页",
+          "href": "https://apps.gnome.org/zh-CN/TextEditor/"
+        },
+        {
+          "label": "查看源代码目录",
+          "href": "gnome-text-editor/"
+        }
+      ],
+      "keywords": [
+        "Text Editor",
+        "GTK 4",
+        "libadwaita",
+        "macOS",
+        "GNOME Core",
+        "Plain Text"
+      ]
+    }
+  ]
+}

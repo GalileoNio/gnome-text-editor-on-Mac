@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="GNOME on Mac is an unofficial static catalog of GNOME ecosystem apps ported and running on macOS."
+    >
+    <meta name="theme-color" content="#3584e4">
+    <title>GNOME on Mac</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" aria-label="站点导航">
+      <a class="brand" href="#top" aria-label="GNOME on Mac 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-dot"></span>
+        </span>
+        <span>GNOME on Mac</span>
+      </a>
+      <nav class="nav-links" aria-label="主要导航">
+        <a href="apps.html#circle">Apps</a>
+        <a href="#notes">Notes</a>
+        <a href="#deploy">Deploy</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Unofficial GNOME ports showcase</p>
+          <h1 id="hero-title">GNOME apps, running on macOS.</h1>
+          <p class="hero-lede">
+            一个用于陈列 GNOME 生态应用 Mac 移植成果的静态页面。这里记录哪些应用已经跑起来、
+            用到了哪些 GNOME 技术栈，以及下一批准备搬到 macOS 的应用。
+          </p>
+          <div class="hero-actions" aria-label="页面行动">
+            <a class="button primary" href="apps.html#circle">查看应用</a>
+            <a class="button secondary" href="#notes">查看移植说明</a>
+          </div>
+        </div>
+
+        <div class="circle-stage" aria-label="GNOME on Mac 应用预览">
+          <div class="circle-rings" aria-hidden="true"></div>
+          <a class="featured-app" href="apps/text-editor/">
+            <img
+              src="assets/icons/org.gnome.TextEditor.svg"
+              width="96"
+              height="96"
+              alt="Text Editor 图标"
+            >
+            <div>
+              <p class="status-pill ready">Running</p>
+              <h2>Text Editor</h2>
+              <p>GTK 4 and libadwaita, packaged as a macOS app bundle.</p>
+            </div>
+          </a>
+          <div class="orbit-item orbit-one">GTK 4</div>
+          <div class="orbit-item orbit-two">libadwaita</div>
+          <div class="orbit-item orbit-three">macOS app</div>
+        </div>
+      </section>
+
+      <section class="intro-band" aria-label="站点说明">
+        <div class="section-shell intro-grid">
+          <div>
+            <h2>Inspired by GNOME Circle</h2>
+            <p>
+              GNOME Circle 用来展示扩展 GNOME 生态的优秀应用。GNOME on Mac 借用这个展示方式，
+              但关注点换成“这些 GNOME 应用在 Mac 上能否编译、打包并实际运行”。
+            </p>
+          </div>
+          <div class="metric-row" aria-label="当前统计">
+            <div>
+              <strong data-count-apps>1</strong>
+              <span>移植应用</span>
+            </div>
+            <div>
+              <strong>GTK 4</strong>
+              <span>主要工具包</span>
+            </div>
+            <div>
+              <strong>Pages</strong>
+              <span>静态部署</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell app-section" id="apps" aria-labelledby="apps-title">
+        <div class="section-heading">
+          <p class="eyebrow">Applications</p>
+          <h2 id="apps-title">Mac 上跑起来的 GNOME 应用</h2>
+          <p>
+            每张卡片都代表一个移植目标。后续新增应用时，只需要把图标、截图和状态补进
+            <code>site/apps.json</code>，详情页会自动读取同一份数据。
+          </p>
+        </div>
+        <div class="app-grid" data-app-grid aria-live="polite"></div>
+      </section>
+
+      <section class="section-shell notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="section-heading">
+          <p class="eyebrow">Porting notes</p>
+          <h2 id="notes-title">移植状态怎么读</h2>
+        </div>
+        <div class="notes-grid">
+          <article>
+            <h3>Running</h3>
+            <p>应用已经能在 macOS 上启动，并完成了基本 app bundle 包装。</p>
+          </article>
+          <article>
+            <h3>Packaging</h3>
+            <p>应用可以编译，但还在处理图标、schema、启动脚本或发布包结构。</p>
+          </article>
+          <article>
+            <h3>Research</h3>
+            <p>依赖链、平台 API 或 UI 行为仍在调查，暂未进入可运行阶段。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="deploy-band" id="deploy" aria-labelledby="deploy-title">
+        <div class="section-shell deploy-grid">
+          <div>
+            <p class="eyebrow">GitHub Pages</p>
+            <h2 id="deploy-title">无需构建，直接发布静态目录</h2>
+            <p>
+              站点文件都在 <code>site/</code>。仓库内已经包含 GitHub Actions workflow，
+              push 到 <code>main</code> 或手动运行 workflow 后，会把这个目录发布到 GitHub Pages。
+            </p>
+          </div>
+          <pre><code>python3 -m http.server 4173 --directory site</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-shell footer-grid">
+        <p>
+          GNOME on Mac is an unofficial showcase. GNOME and related marks belong to the GNOME Project.
+        </p>
+        <p>
+          Design reference:
+          <a href="https://circle.gnome.org/">GNOME Circle</a>
+          and
+          <a href="https://apps.gnome.org/">Apps for GNOME</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

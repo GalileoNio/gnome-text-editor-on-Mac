@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Browse GNOME ecosystem apps ported to macOS in the GNOME on Mac catalog."
+    >
+    <meta name="theme-color" content="#3584e4">
+    <title>应用 - GNOME on Mac</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" aria-label="站点导航">
+      <a class="brand" href="index.html" aria-label="GNOME on Mac 首页">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-dot"></span>
+        </span>
+        <span>GNOME on Mac</span>
+      </a>
+      <nav class="nav-links" aria-label="主要导航">
+        <a href="apps.html#circle">Apps</a>
+        <a href="index.html#notes">Notes</a>
+        <a href="index.html#deploy">Deploy</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="directory-hero section-shell" aria-labelledby="directory-title">
+        <p class="eyebrow">Applications</p>
+        <h1 id="directory-title">GNOME 应用</h1>
+        <p>
+          发现已经在 macOS 上跑起来的 GNOME 生态应用，查看它们的移植状态、技术栈、
+          app bundle 信息和后续维护入口。
+        </p>
+      </section>
+
+      <nav class="category-nav section-shell" aria-label="应用分类">
+        <a href="#core">核心</a>
+        <a href="#circle">生态圈</a>
+        <a href="#development">开发</a>
+      </nav>
+
+      <section class="directory-section section-shell" id="core" aria-labelledby="core-title">
+        <div class="section-heading">
+          <p class="eyebrow">Core</p>
+          <h2 id="core-title">核心应用</h2>
+          <p>
+            GNOME 默认体验中的常用应用。如果其中某个应用已经完成 Mac 移植，会出现在这里。
+          </p>
+        </div>
+        <div
+          class="directory-grid"
+          data-app-list="core"
+          data-empty-text="核心分类里还没有单独标记的 Mac 移植条目。"
+        ></div>
+      </section>
+
+      <section class="directory-section section-shell" id="circle" aria-labelledby="circle-title">
+        <div class="section-heading">
+          <p class="eyebrow">Circle</p>
+          <h2 id="circle-title">生态圈应用</h2>
+          <p>
+            这里是 GNOME on Mac 的主要目录：每个条目都代表一个正在移植、已经打包或已能运行的
+            GNOME 生态应用。
+          </p>
+        </div>
+        <div
+          class="directory-grid"
+          data-app-list="circle"
+          data-empty-text="生态圈目录暂时为空。新的移植应用会显示在这里。"
+        ></div>
+      </section>
+
+      <section
+        class="directory-section section-shell"
+        id="development"
+        aria-labelledby="development-title"
+      >
+        <div class="section-heading">
+          <p class="eyebrow">Development</p>
+          <h2 id="development-title">开发工具</h2>
+          <p>
+            面向 GNOME 开发和调试的工具。如果后续把 Builder、D-Spy、Workbench 等跑起来，
+            可以归入这个分类。
+          </p>
+        </div>
+        <div
+          class="directory-grid"
+          data-app-list="development"
+          data-empty-text="开发工具分类暂时还没有移植条目。"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-shell footer-grid">
+        <p>
+          Inspired by Apps for GNOME. This is an unofficial macOS porting catalog.
+        </p>
+        <p><a href="index.html">返回 GNOME on Mac 首页</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

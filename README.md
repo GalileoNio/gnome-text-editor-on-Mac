@@ -30,6 +30,30 @@ You can come back to your work even if you've never saved it to a file.
 
 Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gnome-text-editor/tree/master/org.gnome.TextEditor.Devel.json) Flatpak manifest for additional details.
 
+## macOS build
+
+Install the Homebrew dependencies:
+
+```sh
+brew install meson ninja pkgconf gtk4 libadwaita gtksourceview5 libspelling editorconfig gettext itstool
+```
+
+Build `dist/Text Editor.app` without launching it:
+
+```sh
+./script/build_and_run.sh --no-launch
+```
+
+Create the DMG package for release:
+
+```sh
+./script/package_release.sh
+```
+
+The DMG includes `Text Editor.app` and the compiled application resources. The
+binary still links against Homebrew's GTK libraries, so target machines need the
+Homebrew dependencies installed.
+
 ## Plans
 
 To be a delightful and pleasing default text editor experience for GNOME.
