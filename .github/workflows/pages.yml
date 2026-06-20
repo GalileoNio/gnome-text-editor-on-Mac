@@ -10,6 +10,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  PAGES_ENABLEMENT_TOKEN: ${{ secrets.PAGES_ENABLEMENT_TOKEN }}
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -22,16 +25,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
+
+      - name: Verify static site
+        run: test -f site/index.html
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
+        with:
+          # If Pages is already enabled with "GitHub Actions" as its source,
+          # github.token is enough. For first-time enablement, add a repository
+          # secret named PAGES_ENABLEMENT_TOKEN with Pages write/admin access.
+          token: ${{ env.PAGES_ENABLEMENT_TOKEN != '' && env.PAGES_ENABLEMENT_TOKEN || github.token }}
+          enablement: ${{ env.PAGES_ENABLEMENT_TOKEN != '' }}
 
       - name: Upload static site
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: site
+          include-hidden-files: true
 
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
