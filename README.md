@@ -35,7 +35,7 @@ Refer to the [org.gnome.TextEditor.Devel.json](https://gitlab.gnome.org/GNOME/gn
 Install the Homebrew dependencies:
 
 ```sh
-brew install meson ninja pkgconf gtk4 libadwaita gtksourceview5 libspelling editorconfig gettext itstool
+brew install meson ninja pkgconf gtk4 libadwaita gtksourceview5 libspelling editorconfig gettext itstool adwaita-icon-theme
 ```
 
 Build `dist/Text Editor.app` without launching it:
@@ -50,9 +50,10 @@ Create the DMG package for release:
 ./script/package_release.sh
 ```
 
-The DMG includes `Text Editor.app` and the compiled application resources. The
-binary still links against Homebrew's GTK libraries, so target machines need the
-Homebrew dependencies installed.
+The DMG includes `Text Editor.app`, the compiled application resources, and the
+Adwaita icon theme used by GTK symbolic icons. The binary still links against
+Homebrew's GTK libraries, so target machines need the Homebrew dependencies
+installed.
 
 ## Plans
 

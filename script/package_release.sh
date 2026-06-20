@@ -38,14 +38,15 @@ This package includes GNOME Text Editor resources inside the app bundle, but it
 still links against the GTK stack installed by Homebrew:
 
 ```sh
-brew install gtk4 libadwaita gtksourceview5 libspelling editorconfig gettext
+brew install gtk4 libadwaita gtksourceview5 libspelling editorconfig gettext adwaita-icon-theme
 ```
 
 ## Run
 
 Open `gnome-text-editor-macos-arm64-homebrew.dmg`, drag or open
 `Text Editor.app`.
-The app is ad-hoc signed, not notarized.
+The app bundles the Adwaita icon theme for GTK symbolic icons. It is ad-hoc
+signed, not notarized.
 NOTES
 
 hdiutil create -volname "GNOME Text Editor" \

@@ -12,6 +12,7 @@ BUNDLE_ID="org.gnome.TextEditor"
 EXECUTABLE="gnome-text-editor"
 BREW_PREFIX="${HOMEBREW_PREFIX:-/opt/homebrew}"
 LOG_FILE="$DIST_DIR/gnome-text-editor-launch.log"
+ADWAITA_ICON_DIR="$BREW_PREFIX/share/icons/Adwaita"
 
 verify=false
 launch=true
@@ -63,6 +64,13 @@ cp "$SRC_DIR/data/macos/org.gnome.TextEditor.icns" \
   "$APP_BUNDLE/Contents/Resources/org.gnome.TextEditor.icns"
 mkdir -p "$APP_BUNDLE/Contents/Resources/_install"
 cp -R "$PREFIX/." "$APP_BUNDLE/Contents/Resources/_install/"
+if [[ -d "$ADWAITA_ICON_DIR" ]]; then
+  mkdir -p "$APP_BUNDLE/Contents/Resources/_install/share/icons/Adwaita"
+  cp -RL "$ADWAITA_ICON_DIR/." \
+    "$APP_BUNDLE/Contents/Resources/_install/share/icons/Adwaita/"
+else
+  echo "Warning: missing Adwaita icon theme. Install it with: brew install adwaita-icon-theme" >&2
+fi
 
 cat > "$APP_BUNDLE/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
