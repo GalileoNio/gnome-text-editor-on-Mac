@@ -58,6 +58,75 @@ static void configure_data_env(const char *prefix, const char *brew_prefix) {
   setenv("XDG_DATA_DIRS", xdg_data_dirs, 1);
 }
 
+static void write_replaced(FILE *out,
+                           const char *line,
+                           const char *needle,
+                           const char *replacement) {
+  const char *cursor = line;
+  const char *match;
+  size_t needle_len = strlen(needle);
+
+  while ((match = strstr(cursor, needle)) != NULL) {
+    fwrite(cursor, 1, (size_t)(match - cursor), out);
+    fputs(replacement, out);
+    cursor = match + needle_len;
+  }
+
+  fputs(cursor, out);
+}
+
+static void configure_gdk_pixbuf_env(const char *prefix) {
+  char module_root[PATH_MAX];
+  char loader_dir[PATH_MAX];
+  char template_cache[PATH_MAX];
+  char cache_parent[PATH_MAX];
+  char cache_dir[PATH_MAX];
+  char generated_cache[PATH_MAX];
+  const char *home = getenv("HOME");
+  FILE *in;
+  FILE *out;
+  char line[4096];
+
+  join_path(module_root, sizeof module_root, prefix, "lib/gdk-pixbuf-2.0/2.10.0");
+  join_path(loader_dir, sizeof loader_dir, module_root, "loaders");
+  join_path(template_cache, sizeof template_cache, module_root, "loaders.cache");
+
+  if (access(loader_dir, R_OK) != 0 || access(template_cache, R_OK) != 0) {
+    return;
+  }
+
+  setenv("GDK_PIXBUF_MODULEDIR", loader_dir, 1);
+
+  if (home != NULL && home[0] != '\0') {
+    snprintf(cache_parent, sizeof cache_parent, "%s/Library/Caches", home);
+    mkdir(cache_parent, 0755);
+    join_path(cache_dir, sizeof cache_dir, cache_parent, "GNOME Text Editor");
+    mkdir(cache_dir, 0755);
+    join_path(generated_cache, sizeof generated_cache, cache_dir, "gdk-pixbuf-loaders.cache");
+  } else {
+    snprintf(generated_cache, sizeof generated_cache, "/tmp/gnome-text-editor-gdk-pixbuf-loaders.cache");
+  }
+
+  in = fopen(template_cache, "r");
+  if (in == NULL) {
+    return;
+  }
+
+  out = fopen(generated_cache, "w");
+  if (out == NULL) {
+    fclose(in);
+    return;
+  }
+
+  while (fgets(line, sizeof line, in) != NULL) {
+    write_replaced(out, line, "@GDK_PIXBUF_LOADER_DIR@", loader_dir);
+  }
+
+  fclose(out);
+  fclose(in);
+  setenv("GDK_PIXBUF_MODULE_FILE", generated_cache, 1);
+}
+
 static void redirect_logs(void) {
   const char *home = getenv("HOME");
   char log_path[PATH_MAX];
@@ -144,6 +213,7 @@ int main(int argc, char **argv) {
   redirect_logs();
   prepend_path_env(brew_prefix);
   configure_data_env(prefix, brew_prefix);
+  configure_gdk_pixbuf_env(prefix);
   chdir(workdir);
 
   join_path(target, sizeof target, prefix, "bin/gnome-text-editor");

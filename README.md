@@ -44,16 +44,19 @@ Build `dist/Text Editor.app` without launching it:
 ./script/build_and_run.sh --no-launch
 ```
 
-Create the DMG package for release:
+Create both DMG packages for release:
 
 ```sh
 ./script/package_release.sh
 ```
 
-The DMG includes `Text Editor.app`, the compiled application resources, and the
-Adwaita icon theme used by GTK symbolic icons. The binary still links against
-Homebrew's GTK libraries, so target machines need the Homebrew dependencies
-installed.
+The release script builds two packages:
+
+- `dist/gnome-text-editor-macos-arm64-bundled.dmg` includes the Homebrew GTK
+  stack and runtime data inside `Text Editor.app`, so users should not need to
+  install the Homebrew runtime packages just to launch it.
+- `dist/gnome-text-editor-macos-arm64-homebrew.dmg` is the smaller package that
+  links against Homebrew's GTK libraries on the target machine.
 
 ## Plans
 
