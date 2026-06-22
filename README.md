@@ -58,6 +58,32 @@ The release script builds two packages:
 - `dist/gnome-text-editor-macos-arm64-homebrew.dmg` is the smaller package that
   links against Homebrew's GTK libraries on the target machine.
 
+## GitHub Pages
+
+The static showcase lives in `site/` and is deployed by
+`.github/workflows/pages.yml`.
+
+For local preview:
+
+```sh
+python3 -m http.server 4173 --directory site
+```
+
+Useful routes:
+
+- <http://localhost:4173/>
+- <http://localhost:4173/apps.html#circle>
+- <http://localhost:4173/apps/text-editor/>
+
+In the repository settings, set Pages to use **GitHub Actions** as the build and
+deployment source.
+
+If the first run fails with `Get Pages site failed`, the repository probably has
+not had Pages enabled yet. Either enable Pages manually in the repository
+settings, or add a repository secret named `PAGES_ENABLEMENT_TOKEN` with Pages
+write/admin permission so `actions/configure-pages` can enable it during the
+workflow run.
+
 ## Plans
 
 To be a delightful and pleasing default text editor experience for GNOME.
