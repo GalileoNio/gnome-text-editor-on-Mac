@@ -74,6 +74,7 @@ Useful routes:
 - <http://localhost:4173/>
 - <http://localhost:4173/apps.html#circle>
 - <http://localhost:4173/apps/text-editor/>
+- <http://localhost:4173/apps/papers/>
 
 In the repository settings, set Pages to use **GitHub Actions** as the build and
 deployment source.

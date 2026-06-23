@@ -321,10 +321,21 @@ h3 {
   text-decoration: none;
 }
 
-.featured-app img {
+.featured-app img,
+.featured-icons img {
   width: 96px;
   height: 96px;
   filter: drop-shadow(0 14px 18px rgb(36 31 49 / 16%));
+}
+
+.featured-icons {
+  display: flex;
+  align-items: center;
+  min-height: 104px;
+}
+
+.featured-icons img + img {
+  margin-left: -1.55rem;
 }
 
 .featured-app h2 {

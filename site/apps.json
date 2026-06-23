@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19",
+  "updated": "2026-06-23",
   "apps": [
     {
       "name": "Text Editor",
@@ -37,7 +37,7 @@
         },
         {
           "label": "查看源代码目录",
-          "href": "gnome-text-editor/"
+          "href": "https://github.com/GalileoNio/gnome-text-editor-on-Mac"
         }
       ],
       "keywords": [
@@ -47,6 +47,79 @@
         "macOS",
         "GNOME Core",
         "Plain Text"
+      ]
+    },
+    {
+      "name": "Papers",
+      "slug": "papers",
+      "id": "org.gnome.Papers",
+      "subtitle": "Read documents",
+      "summary": "GNOME 文档查看器的 macOS 移植版，可查看、搜索和批注文档，支持 PDF、DjVu、TIFF 与漫画归档格式。",
+      "description": "Papers 是 GNOME 的现代文档查看器，也是 Evince 的 GTK 4 后继项目。这个条目记录的是 Papers 在 macOS 上完成构建、安装、DMG 打包和 .app bundle 包装后的运行状态。",
+      "status": "Running",
+      "groups": ["core", "circle"],
+      "upstreamCategory": "GNOME Core",
+      "version": "50.0",
+      "macTarget": "macOS 14+",
+      "bundlePath": "papers-on-Mac/dist/Papers.app",
+      "detailPath": "apps/papers/",
+      "icon": "assets/icons/org.gnome.Papers.svg",
+      "screenshot": "assets/screenshots/papers/papers-1.png",
+      "screenshots": [
+        {
+          "src": "assets/screenshots/papers/papers-1.png",
+          "alt": "Papers document viewer main window",
+          "caption": "清晰、简洁、现代的文档阅读界面"
+        },
+        {
+          "src": "assets/screenshots/papers/papers-2.png",
+          "alt": "Papers narrow window layout",
+          "caption": "适合窄窗口和移动布局的界面"
+        },
+        {
+          "src": "assets/screenshots/papers/papers-3.png",
+          "alt": "Papers annotation list",
+          "caption": "现代化的彩色批注列表"
+        },
+        {
+          "src": "assets/screenshots/papers/papers-4.png",
+          "alt": "Papers thumbnails sidebar",
+          "caption": "侧边栏中的大缩略图"
+        },
+        {
+          "src": "assets/screenshots/papers/papers-5.png",
+          "alt": "Papers search sidebar",
+          "caption": "集中在侧边栏里的搜索操作"
+        }
+      ],
+      "toolkit": ["GTK 4", "libadwaita", "Poppler", "Rust", "Meson"],
+      "portingNotes": [
+        "已在 papers-on-Mac 项目中完成 macOS 构建。",
+        "已生成 dist/Papers.app，并包含 PDF、CBZ、CBR、CB7、DjVu、TIFF 等文档类型声明。",
+        "已生成 papers-macos-arm64-homebrew.dmg，用于当前 Homebrew GTK 运行时方案。",
+        "当前用于展示和验证的是本地移植产物，不是 GNOME 官方 macOS 发布包。"
+      ],
+      "actions": [
+        {
+          "label": "查看上游应用页",
+          "href": "https://apps.gnome.org/zh-CN/Papers/"
+        },
+        {
+          "label": "查看移植仓库",
+          "href": "https://github.com/GalileoNio/papers-on-Mac"
+        }
+      ],
+      "keywords": [
+        "Papers",
+        "Document Viewer",
+        "PDF",
+        "DjVu",
+        "TIFF",
+        "Comic Books",
+        "Annotations",
+        "GTK 4",
+        "libadwaita",
+        "macOS"
       ]
     }
   ]
